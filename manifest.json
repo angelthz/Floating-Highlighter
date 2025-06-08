@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Floating Highligter",
+  "version": "1.0",
+  "description": "A Chrome extension that allows users to highlight text on any webpage with a floating toolbar.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "64": "icons/icon64.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "storage",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "action" : {
+      
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": [
+				"content-scripts/highlighter.js",
+				"content-scripts/main.js"
+			],
+      "css" : ["styles/content-styles.css"]
+		}
+	]
+}
