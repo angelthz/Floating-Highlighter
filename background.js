@@ -1,12 +1,15 @@
+let mountState = false;
+
 chrome.webNavigation.onCompleted.addListener(async (details) => {
   const badge = await chrome.action.getBadgeText({tabId: details.tabId});
   chrome.action.setBadgeText({text: "OFF"});
+  
 });
 
 chrome.action.onClicked.addListener(async (tab) => {
   const prevState = await chrome.action.getBadgeText({tabId: tab.id});
   const nextState = prevState === 'ON' ? 'OFF' : 'ON';
-  const state = nextState === 'ON' ? true : false;  
+  const state = nextState === 'ON' ? true : false; 
   chrome.action.setBadgeText({tabId: tab.id, text: nextState});
   // console.log("Prev: "+ prevState +" Next: "+nextState);
 
@@ -31,6 +34,7 @@ chrome.action.onClicked.addListener(async (tab) => {
     //     });
     //   }
     // });
+    
     chrome.tabs.sendMessage(tab.id, {action:"controls", state: state}, function(response) {
           console.log("Respuesta del Content Script:", response);
     });

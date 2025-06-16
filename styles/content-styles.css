@@ -57,10 +57,15 @@
     border-radius: 1rem;
 }
 
-.highlighted-eraser{
-    /* cursor: none; */
-    border-radius: 0.25rem;
+.cursor{
+    cursor: url(data:image/svg+xml,%3Csvg%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20%20width%3D%2224%22%20%20height%3D%2224%22%20%20viewBox%3D%220%200%2024%2024%22%20%20fill%3D%22%23cccccc50%22%20%20stroke%3D%22%23333%22%20%20stroke-width%3D%222%22%20%20stroke-linecap%3D%22round%22%20%20stroke-linejoin%3D%22round%22%20%20class%3D%22icon%20icon-tabler%20icons-tabler-outline%20icon-tabler-pencil%22%3E%3Cpath%20stroke%3D%22none%22%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M4%2020h4l10.5%20-10.5a2.828%202.828%200%201%200%20-4%20-4l-10.5%2010.5v4%22%20%2F%3E%3Cpath%20d%3D%22M13.5%206.5l4%204%22%20%2F%3E%3C%2Fsvg%3E), auto;
 }
+
+.visible{
+    background-color: var(--color);
+}
+
+/* .highlighted-eraser{} */
 
 .highlighted-eraser:hover{
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.95);
@@ -92,4 +97,3 @@
 #power:not(:checked) + label span:last-child{
     display: none;
 }
-

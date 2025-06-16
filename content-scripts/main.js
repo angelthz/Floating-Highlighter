@@ -2,6 +2,7 @@
 
   //inicializa el control flotante en la pagina actual
   const hlr = new Hihglighter(document.body, { color: "#ff00c850" });
+  let firstRun = true;
   const markerIcon = `<svg  xmlns=" viewBox="0 0 24 24"  fill="var(--high-hover)"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>`;
 
   const floatingControls = ` <div class="floating-highlighter hidden">
@@ -99,8 +100,11 @@
     // y desactivar el resaltado de texto
     if (request.action === "controls") {
       console.log("content script request received:", request);
-
       if (request.state) {
+        if(firstRun){
+          hlr.initHighlights();
+          firstRun = false;
+        }
         hlr.runHighlighter();
         hlr.showHighlights();
         // showControls(request.state)
@@ -114,12 +118,8 @@
       }
       sendResponse({ result: { status: true, message: "floating controls updated" } });
     }
-
-    if (request.action === "ping") {
-      sendResponse({ result: { status: true, message: "component mounted" } });
-    }
-
     return true;
   });
+
 
 })()
